@@ -1,0 +1,72 @@
+<!--Objective: Implement JavaScript form validation to ensure required fields are filled, email format is correct,
+and password meets security criteria.-->
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Form Validation Example</title>
+ <style>
+ form {
+ max-width: 400px;
+ margin: auto;
+ padding: 20px;
+ border: 1px solid #ccc;
+ font-family: Arial;
+ }
+ input {
+ width: 100%;
+ padding: 8px;
+ margin: 8px 0;
+ box-sizing: border-box;
+ }
+ .error {
+ color: red;
+ font-size: 14px;
+ }
+ </style>
+</head>
+<body>
+ <form onsubmit="return validateForm()" id="registrationForm">
+ <h2>Register</h2>
+ <label for="name">Name:</label>
+ <input type="text" id="name" required>
+ <label for="email">Email:</label>
+ <input type="text" id="email" required>
+ <label for="password">Password:</label>
+ <input type="password" id="password" required>
+ <div class="error" id="errorMsg"></div>
+ <input type="submit" value="Register">
+ </form>
+ <script>
+ function validateForm() {
+ // Get form values
+ const name = document.getElementById("name").value.trim();
+ const email = document.getElementById("email").value.trim();
+ const password = document.getElementById("password").value;
+ const errorDiv = document.getElementById("errorMsg");
+ // Clear previous error
+ errorDiv.textContent = "";
+ // Basic Required Fields Check
+ if (name === "" || email === "" || password === "") {
+ errorDiv.textContent = "All fields are required.";
+ return false;
+ }
+ // Email format validation using regex
+ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ if (!emailRegex.test(email)) {
+ errorDiv.textContent = "Please enter a valid email address.";
+ return false;
+ }
+ // Password validation: min 8 chars, 1 uppercase, 1 lowercase, 1 number
+ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+ if (!passwordRegex.test(password)) {
+ errorDiv.textContent = "Password must be at least 8 characters and include uppercase, lowercase, and a
+number.";
+ return false;
+ }
+ // If all validations pass
+ alert("Form submitted successfully!");
+ return true; 
+  }
+ </script>
+</body>
+</html> 

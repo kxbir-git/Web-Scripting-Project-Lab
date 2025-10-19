@@ -1,0 +1,55 @@
+<!--Objective: Create an interactive webpage where clicking a button dynamically makes an invisible division
+appear and dynamically bold, italic and underline words and phrases based on user actions.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Interactive Text Styling</title>
+ <style>
+ /* Styling for the hidden div (text editor) */
+ #hiddenDiv {
+ display: none; /* Initially hidden */
+ margin-top: 20px;
+ padding: 10px;
+ border: 1px solid #aaa;
+ min-height: 100px;
+ background-color: #f9f9f9;
+ }
+ /* Styling for all buttons */
+ button {
+ margin: 5px;
+ padding: 8px 12px;
+ font-size: 16px;
+ }
+ </style>
+</head>
+<body>
+ <!-- Page heading -->
+ <h2>Text Styling Tool</h2>
+ <!-- Button to show the editable div -->
+ <button onclick="showDiv()">Show Editor</button>
+ <!-- Hidden editable div; becomes visible when 'Show Editor' is clicked -->
+ <div id="hiddenDiv" contenteditable="true">
+ You can type and select text here to apply formatting.
+ </div>
+ <!-- Formatting buttons: Bold, Italic, Underline -->
+ <div style="margin-top: 10px;">
+    <button onclick="formatText('bold')"><b>Bold</b></button>
+ <button onclick="formatText('italic')"><i>Italic</i></button>
+ <button onclick="formatText('underline')"><u>Underline</u></button>
+ </div>
+ <script>
+ // Function to show the hidden editor div
+ function showDiv() {
+ const div = document.getElementById("hiddenDiv"); // Get the hidden div by ID
+ div.style.display = "block"; // Make it visible
+ div.focus(); // Automatically focus the div so user can start typing
+ }
+ // Function to format selected text using execCommand
+ function formatText(command) {
+ // Apply formatting to the selected text (e.g., bold, italic, underline)
+ document.execCommand(command, false, null);
+ }
+ </script>
+</body>
+</html> 

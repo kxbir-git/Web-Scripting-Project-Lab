@@ -1,0 +1,110 @@
+<!--Objective: Write a program to create a voting application using ReactJS. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Voting App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #f7f9fc;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .candidate {
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 8px 16px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .results {
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+    .result-item {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Voting Application</h1>
+  <div id="candidates">
+    <!-- Candidates will be dynamically inserted here -->
+  </div>
+
+  <div class="results" id="results">
+    <h2>Results:</h2>
+    <div id="resultList"></div>
+  </div>
+
+  <script>
+    // Candidate data
+    const candidates = [
+      { name: "Alice", votes: 0 },
+      { name: "Bob", votes: 0 },
+      { name: "Charlie", votes: 0 }
+    ];
+
+    const candidatesDiv = document.getElementById('candidates');
+    const resultList = document.getElementById('resultList');
+
+    // Function to render candidates and buttons
+    function renderCandidates() {
+      candidatesDiv.innerHTML = '';
+      candidates.forEach((candidate, index) => {
+        const div = document.createElement('div');
+        div.className = 'candidate';
+        div.textContent = candidate.name;
+
+        const btn = document.createElement('button');
+        btn.textContent = 'Vote';
+        btn.onclick = () => castVote(index);
+
+        div.appendChild(btn);
+        candidatesDiv.appendChild(div);
+      });
+    }
+
+    // Function to display voting results
+    function displayResults() {
+      resultList.innerHTML = '';
+      candidates.forEach(candidate => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = `${candidate.name}: ${candidate.votes} vote(s)`;
+        resultList.appendChild(div);
+      });
+    }
+
+    // Function to cast a vote
+    function castVote(candidateIndex) {
+      candidates[candidateIndex].votes += 1;
+      displayResults();
+    }
+
+    // Initial rendering
+    renderCandidates();
+    displayResults();
+  </script>
+</body>
+</html>

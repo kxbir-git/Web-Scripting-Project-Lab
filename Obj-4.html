@@ -1,0 +1,21 @@
+<!--Objective: Write a JavaScript program to change background color after 5 seconds of page load.-->
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Background Color Change</title>
+ <script>
+ // Function to change the background color
+ function changeBackgroundColor() {
+ document.body.style.backgroundColor = "#d1f7c4"; // Light green color
+ }
+ // Set a timer to change background color after 5 seconds (5000 milliseconds)
+ window.onload = function() {
+ setTimeout(changeBackgroundColor, 5000);
+ };
+ </script>
+</head>
+<body>
+ <h1>Welcome!</h1>
+ <p>The background color will change 5 seconds after the page loads.</p>
+</body
+</html>
